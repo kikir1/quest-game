@@ -6,5 +6,5 @@ from django.views.generic import ListView, DetailView
 urlpatterns = [
     url(r'^$', index, name="index"),
     url(r"^game/$", game, name="game"),
-    url(r"^(?P<pk>\d+)$", redir)
+    url(r"^(?P<pk>\d+)$", redir),
 ]

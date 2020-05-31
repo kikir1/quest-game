@@ -1,33 +1,15 @@
-$("#new_game_btn").click(function (){
-
-    console.log('test');
-
-    $.ajax({
-
-        type: "GET",
-        url: "redir/",
-
-    });
-});
-
 $("#send").click(function() {
-
+    var tittle =  $("#quest").text();
+    var answer = $('input[name="option1"]:checked').val();
     $.ajax({
-
         type: "GET",
-
         url: "game/",
-
         data: {
-
-            'tittle': $("#quest").text(),
-            "answer": $('input[name="option1"]:checked').val()
+            "tittle": tittle,
+            "answer": answer
         },
-
-        success: function (data) {
-            $("#quest").html("<p id='quest'><b>{{ quest.quest }}</b></p>");
-        }
-
+        dataType: "text",
+        cache: false,
 
     });
 
