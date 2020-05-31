@@ -11,6 +11,8 @@ $("#send").click(function() {
         dataType: "text",
         cache: false,
 
+        success:function(url){
+            document.location.href = url
+        }
     });
-
 });

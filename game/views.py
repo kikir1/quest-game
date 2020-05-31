@@ -1,28 +1,18 @@
-from datetime import time
-from time import sleep
-
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import *
-
-# Create your views here.
-
 
 def index(request):
     return redir(request, 1)
 
 def game(request):
-    tittle = request.GET.get("tittle")
-    print('sadfsdfascassdgffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',tittle)
+    cur_quest = request.GET.get("tittle")
     ans = request.GET.get("answer")
-    print(ans)
-    quest = Questions.objects.get(quest=tittle)
-    print(quest)
-    next_quest = Ans.objects.get(answer=ans, quest=quest).next_quest.id
-    print("ddss", next_quest)
-    if next_quest:
-        return redirect(redir, int(next_quest))
-    else:
+    quest = Questions.objects.get(quest=cur_quest)
+    try:
+        next_quest = Ans.objects.get(answer=ans, quest=quest).next_quest.id
+        return HttpResponse("/" + str(next_quest))
+    except:
         return render(request, "finish.html")
 
 

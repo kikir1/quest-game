@@ -9,8 +9,9 @@
 			   		<input type="radio" name="option1" value="{{i.answer}}">{{ i.answer }}<Br>
 			   {% endfor %}
 		   </p>
-		   <button id="send">отправить</button>
+
   		</form>
+		<button id="send">отправить</button>
 
 		<form action="{% url 'index' %}" method="post">
 			{% csrf_token %}
