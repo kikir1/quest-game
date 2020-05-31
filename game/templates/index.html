@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTUPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+	<title>квест-игра</title>
+</head>
+<body class="wrapper">
+	<div class="content">
+
+		{% block content %}
+
+		{% endblock %}
+		
+	</div>
+</body>
+<script src="{% static 'jquery.js' %}"></script>
+<script src="{% static 'script.js' %}"></script>
+</html>

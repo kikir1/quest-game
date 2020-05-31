@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <form action="{% url 'index' %}" method="post" id="test">
+			{% csrf_token %}
+		   <p id="quest"><b>{{ quest.quest }}</b></p>
+		   <p>
+			   {% for i in  answer %}
+			   		<input type="radio" name="option1" value="{{i.answer}}">{{ i.answer }}<Br>
+			   {% endfor %}
+		   </p>
+		   <p><input type="submit" value="Отправить" id="send"></p>
+  		</form>
+
+		<form action="{% url 'index' %}" method="post">
+			{% csrf_token %}
+
+		   <p><input type="submit" value="новая игра" id="new_game_btn"></p>
+  		</form>
+{% endblock %}
