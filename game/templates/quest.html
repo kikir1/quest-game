@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
 {% block content %}
-    <form action="{% url 'index' %}" method="post" id="test">
+    <form action="{% url 'game' %}" id="test">
 			{% csrf_token %}
 		   <p id="quest"><b>{{ quest.quest }}</b></p>
 		   <p>

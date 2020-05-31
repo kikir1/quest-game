@@ -3,4 +3,4 @@ from game.models import *
 # Register your models here.
 
 admin.site.register(Questions)
-admin.site.register(Answ)
+admin.site.register(Ans)

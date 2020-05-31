@@ -1,42 +1,26 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
-from .models import Questions, Answ
+from .models import *
 
 # Create your views here.
 
 
 def index(request):
-
-    quest = Questions.objects.get(id=1)
-    answer = Answ.objects.filter(quest=1)
-
-    return render(request, "index.html", context={"quest": quest, 'answer': answer})
+    return redir(request, 1)
 
 def game(request):
 
-    cur_quest = request.GET['tittle']
-    ans = request.GET['answer']
-    quest = Questions.objects.get(quest=cur_quest)
-    next_quest = Answ.objects.get(answer=ans, quest=quest).nq
-    answers = Answ.objects.filter(quest=next_quest)
-    answer = []
-    for ans in answers:
-        a = ans.answer
-        answer.append(a)
+    ans = request.GET['option1']
+    #quest = Questions.objects.get(quest=cur_quest)
+    try:
+        next_quest = Ans.objects.get(answer=ans).next_quest.id
+        print(next_quest)
+        return redirect(redir, next_quest)
+    except:
+        return render(request, "finish.html")
 
-    response = {
-        "quest": next_quest.quest,
-        "answer": answer
-    }
-
-    return redirect("game")
-
-def redir(request):
-    print("hf,jnftn")
-    redirect("/1/")
-
-def test(request, pk):
+def redir(request, pk):
     quest = Questions.objects.get(id=pk)
-    answer = Answ.objects.filter(quest=quest)
+    answer = Ans.objects.filter(quest=quest)
 
     return render(request, "quest.html", context={"quest": quest, 'answer': answer})
